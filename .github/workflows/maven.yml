@@ -20,11 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      dependencies: write   # wajib supaya bisa update dependency graph
       security-events: write
-      actions: read
-      id-token: write
-      # penting ini:
-      dependencies: write
 
     steps:
     - uses: actions/checkout@v4
