@@ -44,4 +44,46 @@ Aplikazi akan mencakup modul-modul utama sebagai berikut:
 * Spring Boot 3.5.4
 * MySQL
 
+# Commit Convention
+
+Agar riwayat commit lebih rapi, mudah dibaca, dan konsisten, gunakan aturan commit berikut.
+
+---
+
+## Format Pesan Commit
+
+
+### Aturan:
+1. **type** → Jenis perubahan (lihat daftar di bawah).
+2. **scope** (opsional) → Bagian spesifik dari project yang terpengaruh (misal: `api`, `auth`, `db`).
+3. **short summary** → Ringkasan singkat, diawali huruf kecil, maksimal ±50 karakter.
+
+---
+
+## Daftar `type`
+
+| Type       | Deskripsi                                                                 |
+|------------|---------------------------------------------------------------------------|
+| **feat**   | Penambahan fitur baru                                                     |
+| **fix**    | Perbaikan bug                                                             |
+| **docs**   | Perubahan atau penambahan dokumentasi                                     |
+| **style**  | Perubahan tampilan/format (spasi, indentasi, dll) tanpa mengubah logika   |
+| **refactor** | Perubahan kode tanpa menambah fitur atau memperbaiki bug                |
+| **perf**   | Peningkatan performa                                                      |
+| **test**   | Penambahan atau perbaikan unit test                                       |
+| **build**  | Perubahan build system atau dependency                                    |
+| **ci**     | Perubahan konfigurasi CI/CD                                               |
+| **chore**  | Perubahan kecil lain (misal update .gitignore)                            |
+| **revert** | Membatalkan commit sebelumnya                                             |
+
+---
+
+## Contoh Commit
+
+- feat(auth): tambah fitur login dengan JWT
+- fix(api): perbaiki error 500 saat create user
+- docs(readme): update cara menjalankan project
+- style(ui): perbaiki padding pada halaman dashboard
+- refactor(service): pisahkan logika validasi dari service
+
 ## Testing ##
