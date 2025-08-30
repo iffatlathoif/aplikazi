@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users
     username            VARCHAR(20)  NOT NULL,
     email               VARCHAR(100) NOT NULL,
     password            VARCHAR(50)  NOT NULL,
-    last_login          DATETIME     NOT NULL,
+    last_login          DATETIME,
     enabled             BOOLEAN      NOT NULL default false,
     account_non_expired BOOLEAN      NOT NULL,
     account_non_locked  BOOLEAN      NOT NULL,
@@ -55,4 +55,13 @@ CREATE TABLE IF NOT EXISTS members
     CONSTRAINT check_status CHECK ( status in ('ACTIVE', 'INACTIVE') ),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
+INSERT INTO roles (id, name, created_at, created_by)
+VALUES (UUID(), 'ADMIN', CURRENT_TIMESTAMP, 'DBA');
+
+INSERT INTO roles (id, name, created_at, created_by)
+VALUES (UUID(), 'STAFF', CURRENT_TIMESTAMP, 'DBA');
+
+INSERT INTO roles (id, name, created_at, created_by)
+VALUES (UUID(), 'MEMBER', CURRENT_TIMESTAMP, 'DBA');
 
