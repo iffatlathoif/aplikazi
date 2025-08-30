@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS users
     id                  CHAR(36) PRIMARY KEY,
     username            VARCHAR(20)  NOT NULL,
     email               VARCHAR(100) NOT NULL,
-    password            VARCHAR(50)  NOT NULL,
+    password            VARCHAR(100)  NOT NULL,
     last_login          DATETIME,
     enabled             BOOLEAN      NOT NULL default false,
     account_non_expired BOOLEAN      NOT NULL,
@@ -65,3 +65,9 @@ VALUES (UUID(), 'STAFF', CURRENT_TIMESTAMP, 'DBA');
 INSERT INTO roles (id, name, created_at, created_by)
 VALUES (UUID(), 'MEMBER', CURRENT_TIMESTAMP, 'DBA');
 
+INSERT INTO users (id, username, email, password, account_non_expired, account_non_locked, created_at, created_by)
+VALUES (UUID(), 'admin', 'admin@gmail.com', '$2b$12$uvKlEH4J3UwLjxGYRGaTMe6gk09QYQTO4acvdhrfxGeNsNP3OyLoe', true, true,
+        CURRENT_TIMESTAMP, 'DBA');
+
+INSERT INTO user_roles(user_id, role_id)
+VALUES('0f52c25e-8575-11f0-a00a-d85ed399317e', '93a67360-855c-11f0-a00a-d85ed399317e')

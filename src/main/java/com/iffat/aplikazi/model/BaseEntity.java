@@ -1,4 +1,4 @@
-package com.iffat.aplikazi.entity;
+package com.iffat.aplikazi.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

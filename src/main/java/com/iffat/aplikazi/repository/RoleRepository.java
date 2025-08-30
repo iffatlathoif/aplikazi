@@ -1,6 +1,6 @@
 package com.iffat.aplikazi.repository;
 
-import com.iffat.aplikazi.entity.Role;
+import com.iffat.aplikazi.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

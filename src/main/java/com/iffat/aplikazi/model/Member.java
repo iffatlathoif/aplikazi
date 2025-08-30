@@ -1,4 +1,4 @@
-package com.iffat.aplikazi.entity;
+package com.iffat.aplikazi.model;
 
 import com.iffat.aplikazi.enumeration.StatusMember;
 import jakarta.persistence.*;
