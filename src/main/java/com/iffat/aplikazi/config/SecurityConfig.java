@@ -1,6 +1,8 @@
 package com.iffat.aplikazi.config;
 
 import com.iffat.aplikazi.filter.JwtTokenValidationFilter;
+import com.iffat.aplikazi.handler.CustomAccessDeniedHandler;
+import com.iffat.aplikazi.handler.CustomBasicAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,8 @@ public class SecurityConfig {
 
 	private final UserDetailsService userDetailsService;
 	private final JwtTokenValidationFilter jwtTokenValidationFilter;
+	private final CustomAccessDeniedHandler customAccessDeniedHandler;
+	private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,6 +37,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PUBLIC_URL).permitAll()
 						.anyRequest().authenticated())
+				.exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler)
+						.authenticationEntryPoint(customBasicAuthenticationEntryPoint))
 				.addFilterBefore(jwtTokenValidationFilter, BasicAuthenticationFilter.class);
 		return httpSecurity.build();
 	}
