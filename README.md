@@ -123,7 +123,7 @@ erDiagram
         VARCHAR updated_by
     }
     
-    role {
+    roles {
         UUID id PK
         VARCHAR name UK
     }
