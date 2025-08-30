@@ -133,10 +133,9 @@ erDiagram
         UUID role_id PK        
     }    
 
-    %% Relasi
-    USERS ||--o{ MEMBERS : has
-    USERS ||--o{ USER_ROLES : has
-    ROLES ||--o{ USER_ROLES : assigned
+    users ||--o{ members : has
+    users ||--o{ user_roles : has
+    roles ||--o{ user_roles : assigned
 ```
 ## Testing ##
 
