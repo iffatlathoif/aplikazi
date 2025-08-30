@@ -17,6 +17,7 @@ import java.util.UUID;
 public class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(columnDefinition = "char(36)")
 	private UUID id;
 	@CreatedDate
 	@Column(name = "created_at", updatable = false)
