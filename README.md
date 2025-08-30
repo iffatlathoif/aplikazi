@@ -86,4 +86,56 @@ Agar riwayat commit lebih rapi, mudah dibaca, dan konsisten, gunakan aturan comm
 - style(ui): perbaiki padding pada halaman dashboard
 - refactor(service): pisahkan logika validasi dari service
 
+
+## ERD ##
+
+```mermaid
+erDiagram
+    users {
+        UUID id PK
+        UUID role_id FK
+        VARCHAR username UK
+        VARCHAR email UK        
+        VARCHAR password
+        VARCHAR last_login
+        BOOLEAN enabled
+        BOOLEAN account_non_expired
+        BOOLEAN account_non_locked
+        INTEGER login_attempts
+        TIMESTAMP created_at
+        VARCHAR created_by
+        TIMESTAMP updated_at
+        VARCHAR updated_by
+    }
+
+    members {
+        UUID id PK
+        UUID user_id FK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR address
+        VARCHAR status
+        TIMESTAMP join_at
+        TIMESTAMP expired_at
+        TIMESTAMP created_at
+        VARCHAR created_by
+        TIMESTAMP updated_at
+        VARCHAR updated_by
+    }
+    
+    roles {
+        UUID id PK
+        VARCHAR name UK
+    }
+
+    user_roles {
+        UUID user_id PK
+        UUID role_id PK        
+    }    
+
+    users ||--|| members : has
+    users ||--o{ user_roles : has
+    roles ||--o{ user_roles : assigned
+```
 ## Testing ##
+
