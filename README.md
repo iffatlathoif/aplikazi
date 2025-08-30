@@ -133,7 +133,7 @@ erDiagram
         UUID role_id PK        
     }    
 
-    users ||--o{ members : has
+    users ||--||{ members : has
     users ||--o{ user_roles : has
     roles ||--o{ user_roles : assigned
 ```
