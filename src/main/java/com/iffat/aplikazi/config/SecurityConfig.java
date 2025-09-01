@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import static com.iffat.aplikazi.constants.Constants.ADMIN_PERMISSION;
+import static com.iffat.aplikazi.constants.Constants.ADMIN_STAFF_PERMISSION;
 import static com.iffat.aplikazi.constants.Constants.PUBLIC_URL;
 
 @Configuration
@@ -37,7 +37,7 @@ public class SecurityConfig {
 				.cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PUBLIC_URL).permitAll()
-						.requestMatchers(ADMIN_PERMISSION).hasRole("ADMIN","STAFF")
+						.requestMatchers(ADMIN_STAFF_PERMISSION).hasAnyRole("ADMIN","STAFF")
 						.anyRequest().authenticated())
 				.exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler)
 						.authenticationEntryPoint(customBasicAuthenticationEntryPoint))
