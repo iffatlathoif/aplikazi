@@ -1,9 +1,7 @@
 package com.iffat.aplikazi.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -13,6 +11,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User extends BaseEntity {
 	@Column(unique = true, nullable = false)
 	private String username;
@@ -33,6 +34,5 @@ public class User extends BaseEntity {
 	@JoinTable(name = "user_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
-	@Builder.Default
 	private Set<Role> roles = new HashSet<>();
 }

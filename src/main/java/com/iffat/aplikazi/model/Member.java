@@ -26,7 +26,7 @@ public class Member extends BaseEntity{
 	@Column(name = "expired_at")
 	private LocalDateTime expiredAt;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
 }
