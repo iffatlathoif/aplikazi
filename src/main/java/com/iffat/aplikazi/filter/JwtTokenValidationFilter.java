@@ -35,8 +35,7 @@ public class JwtTokenValidationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		String authHeader = request.getHeader(AUTHORIZATION);
 		if (authHeader != null) {
-			String token = jwtService.extractToken(request);
-			User user = jwtService.getUserFromToken(token);
+			User user = jwtService.getUserFromToken(authHeader);
 			Set<GrantedAuthority> authorities = user.getRoles().stream().map(Role::getName)
 					.map(roleName -> new SimpleGrantedAuthority("ROLE_" + roleName))
 					.collect(Collectors.toSet());

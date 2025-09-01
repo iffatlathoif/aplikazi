@@ -37,7 +37,7 @@ public class SecurityConfig {
 				.cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PUBLIC_URL).permitAll()
-						.requestMatchers(ADMIN_PERMISSION).permitAll()
+						.requestMatchers(ADMIN_PERMISSION).hasRole("ADMIN")
 						.anyRequest().authenticated())
 				.exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler)
 						.authenticationEntryPoint(customBasicAuthenticationEntryPoint))
