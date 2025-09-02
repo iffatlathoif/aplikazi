@@ -2,6 +2,7 @@ package com.iffat.aplikazi.filter;
 
 import com.iffat.aplikazi.model.Role;
 import com.iffat.aplikazi.model.User;
+import com.iffat.aplikazi.model.UserPrincipal;
 import com.iffat.aplikazi.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -39,7 +40,7 @@ public class JwtTokenValidationFilter extends OncePerRequestFilter {
 			Set<GrantedAuthority> authorities = user.getRoles().stream().map(Role::getName)
 					.map(roleName -> new SimpleGrantedAuthority("ROLE_" + roleName))
 					.collect(Collectors.toSet());
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.getUsername(),
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(new UserPrincipal(user),
 					null, authorities);
 			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 			SecurityContextHolder.getContext().setAuthentication(authentication);

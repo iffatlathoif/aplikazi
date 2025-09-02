@@ -1,12 +1,8 @@
 package com.iffat.aplikazi.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iffat.aplikazi.config.TestConfig;
-import com.iffat.aplikazi.dto.LoginRequest;
-import com.iffat.aplikazi.dto.LoginResponse;
-import com.iffat.aplikazi.dto.RegisterMemberRequest;
-import com.iffat.aplikazi.dto.RegisterUserRequest;
+import com.iffat.aplikazi.dto.*;
 import com.iffat.aplikazi.enumeration.Role;
 import com.iffat.aplikazi.service.AuthService;
 import com.iffat.aplikazi.service.JwtService;
@@ -106,9 +102,11 @@ class AuthControllerTest {
 				.password("password123")
 				.build();
 		LoginResponse mockLoginResponse = LoginResponse.builder()
-				.username("admin")
+				.user(UserResponse.builder()
+						.username("admin")
+						.roles(List.of("ROLE_ADMIN"))
+						.build())
 				.token("mock-token")
-				.role("ROLE_ADMIN")
 				.build();
 
 		// mock service

@@ -1,9 +1,6 @@
 package com.iffat.aplikazi.service.impl;
 
-import com.iffat.aplikazi.dto.LoginRequest;
-import com.iffat.aplikazi.dto.LoginResponse;
-import com.iffat.aplikazi.dto.RegisterMemberRequest;
-import com.iffat.aplikazi.dto.RegisterUserRequest;
+import com.iffat.aplikazi.dto.*;
 import com.iffat.aplikazi.enumeration.StatusMember;
 import com.iffat.aplikazi.exception.ResourceNotFoundException;
 import com.iffat.aplikazi.model.Member;
@@ -50,10 +47,18 @@ public class AuthServiceImpl implements AuthService {
 
 		String token = jwtService.generateToken(user.getUsername());
 		return LoginResponse.builder()
-				.role(authentication.getAuthorities().stream()
-						.map(GrantedAuthority::getAuthority) // ambil "ROLE_ADMIN"
-						.collect(Collectors.joining(",")))
-				.username(user.getUsername())
+				.user(
+						UserResponse.builder()
+								.id(user.getId())
+								.username(user.getUsername())
+								.email(user.getEmail())
+								.enabled(user.isEnabled())
+								.lastLogin(user.getLastLogin())
+								.roles(authentication.getAuthorities().stream()
+										.map(GrantedAuthority::getAuthority) // ambil "ROLE_ADMIN"
+										.toList())
+								.build()
+				)
 				.token(token)
 				.build();
 	}
